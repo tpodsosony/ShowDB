@@ -5,7 +5,8 @@ class CreateSeasons < ActiveRecord::Migration[7.2]
       t.integer :number_of_episodes
       t.string :poster_path
       t.decimal :vote_average
-      t.references :show_details, null: false, foreign_key: true
+
+      t.references :show_detail, null: false, foreign_key: true
 
       t.timestamps
     end

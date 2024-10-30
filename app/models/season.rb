@@ -1,3 +1,3 @@
 class Season < ApplicationRecord
-  belongs_to :show_details
+  belongs_to :show_detail
 end

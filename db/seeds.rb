@@ -16,7 +16,7 @@ x = 1
 shows = [] 
 show_info = []
 
-while x < 103
+while x < 30
   url = URI("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=#{x}")
 
   http = Net::HTTP.new(url.host, url.port)
@@ -42,7 +42,7 @@ shows.each do |show|
   avg_rating = show['vote_average']
 
 
-  new_show = Show.create!(
+  new_show = Show.find_or_create_by!(
         title: title,
         image: image,
         overview: overview,
@@ -71,23 +71,35 @@ new_show_detail = new_show.create_show_detail!(
   name: name,
   overview: overview,
   number_of_episodes: number_of_episodes,
-  number_of_seasons: number_of_seasons,
+  number_of_seasons: number_of_seasons
 )
 
-for a in 1..show_info do
-  url = URI("https://api.themoviedb.org/3/tv/#{show['id']}/season/?language=en-US")
-
-  http = Net::HTTP.new(url.host, url.port)
-  http.use_ssl = true
-
-  request = Net::HTTP::Get.new(url)
-  request["accept"] = 'application/json'
-  request["Authorization"] = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZGY2MDQ2MmRmZGM1NDMxMGVhOTFiNzg2N2QyNDkyMCIsIm5iZiI6MTczMDI1NTYwMy4zMDc1ODU3LCJzdWIiOiI2NzExODIzMjFmMGVhNDcxNGVkYmM5NjYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.NXWbbp3pdG5MLGZqvWZbJ06pGxlpfBdZP8EkQCC7WiY'
-
-  response = http.request(request)
-  response.read_body
-end
+  show_info['seasons'].each do |season|
+    season_name = season['name']
+    number_of_episodes = season['episode_count']
+    poster_path = season['poster_path']
+    vote_average = season['vote_average']
+    overview = season['overview']
   
+    new_season = new_show_detail.seasons.create!(
+      season_name: season_name,
+      number_of_episodes: number_of_episodes,
+      poster_path: poster_path,
+      vote_average: vote_average,
+      overview: overview
+    )
+    
+    end
+
+  
+  end
 end
+
+# for episode_num in 1..number_of_episodes do
+  
+
+
+  
+# end
 
 
