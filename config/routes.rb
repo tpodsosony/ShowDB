@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get "/popular", to: "popular#index"
+  root "shows#index"
+  get "/shows", to: "shows#index"
+  get "/shows/:id", to: "shows#show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

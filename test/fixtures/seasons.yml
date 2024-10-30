@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  season_name: MyString
+  number_of_episodes: 1
+  poster_path: MyString
+  vote_average: 9.99
+  show_details: one
+
+two:
+  season_name: MyString
+  number_of_episodes: 1
+  poster_path: MyString
+  vote_average: 9.99
+  show_details: two
