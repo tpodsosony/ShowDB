@@ -1,11 +1,18 @@
 <ul>
   <% @seasons.each do |season| %>
-    <li>
-      <a href="/season/<%= season.id %>"> <%= season.season_name %> </a>
-      </br>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+         <a href="/seasons/<%= season.id %>"> <%= season.season_name %> </a>
+        </div>
+      <div class="col-sm">
       <img src= <%= season.poster_path %> >
-      <p>Overview: <%= season.overview %> </p>
-    </li>
+      </div>
+      <div class="col-sm">
+      Overview: <%= season.overview %>
+      </div>
+  </div>
+</div>
   <% end %>
   <% if params[:page].to_i > 1 %>
     <%= link_to "Previous", root_path(page: params[:page].to_i - 1) %>
