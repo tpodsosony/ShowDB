@@ -1,2 +1,45 @@
-<h1>Episodes#index</h1>
-<p>Find me in app/views/episodes/index.html.erb</p>
+
+<h1>Episodes:</h1>
+<div class="container">
+      <div class="row">
+        <div class="col-sm">
+         Episode still:
+        </div>
+      <div class="col-sm">
+       Name: 
+      </div>
+      <div class="col-sm">
+       Episode Number: 
+      </div>
+      <div class="col-sm">
+      Overview: 
+      </div>
+      <div class="col-sm">
+      Vote Average:
+      </div>
+  </div>
+</div>
+
+<% @episodes.each do |episode| %>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+        <a href="/episodes/<%= episode.id %>"><img src= <%= episode.still_path %> class="img-fluid" alt="Responsive image"> </a>
+        </div>
+        <div class="col-sm">
+        <a href="/episodes/<%= episode.id %>"><%= episode.episode_name%></a> 
+       </div>
+      <div class="col-sm">
+       <%= episode.episode_number%> 
+      </div>
+      <div class="col-sm">
+      <%= episode.overview %>
+      </div>
+      <div class="col-sm">
+      <%= episode.vote_average %>
+      </div>
+  </div>
+</div>
+<% end %>
+
+<%= will_paginate @episodes %>

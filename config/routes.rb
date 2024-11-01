@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get "episodes/index"
-  get "episodes/show"
+  get "episodes", to: "episodes#index"
+  get "episodes/:id", to: "episodes#show"
+
   get "seasons", to: "seasons#index"
   get "seasons/:id", to: "seasons#show"
 

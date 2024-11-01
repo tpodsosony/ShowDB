@@ -1,2 +1,41 @@
-<h1>Episodes#show</h1>
-<p>Find me in app/views/episodes/show.html.erb</p>
+
+<<h1>Episode</h1
+<div class="container">
+      <div class="row">
+        <div class="col-sm">
+         Episode still:
+        </div>
+      <div class="col-sm">
+       Name: 
+      </div>
+      <div class="col-sm">
+       Episode Number: 
+      </div>
+      <div class="col-sm">
+      Overview: 
+      </div>
+      <div class="col-sm">
+      Vote Average:
+      </div>
+  </div>
+</div>
+
+<div class="container">
+      <div class="row">
+        <div class="col-sm">
+        <img src= <%= @episode.still_path %> class="img-fluid" alt="Responsive image"> </a>
+        </div>
+        <div class="col-sm">
+        <%= @episode.episode_name%></a> 
+       </div>
+      <div class="col-sm">
+       <%= @episode.episode_number%> 
+      </div>
+      <div class="col-sm">
+      <%= @episode.overview %>
+      </div>
+      <div class="col-sm">
+      <%= @episode.vote_average %>
+      </div>
+  </div>
+</div>
