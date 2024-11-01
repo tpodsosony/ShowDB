@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root "shows#index"
   get "/shows", to: "shows#index"
   get "/shows/:id", to: "shows#show"
+  get "/shows/search", to: "shows#search"
 
   get "about", to: "about#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
