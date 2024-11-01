@@ -1,16 +1,58 @@
+<div class="container">
+      <div class="row">
+        <div class="col-sm">
+        <a href="/shows/<%= @show.id %>"><img src= <%= @new_show.image %> class="img-fluid" alt="Responsive image"> </a>
+        </div>
+      <div class="col-sm">
+      <a href="/shows/<%= @show.id %>"> <%= @show.name %> </a>
+      </div>
+      <div class="col-sm">
+      Overview: <%= @show.overview %>
+      </div>
+      <div class="col-sm">
+      Number of Seasons: <%= @show.number_of_seasons %>
+      </div>
+      <div class="col-sm">
+      Number of Episodes: <%= @show.number_of_episodes %>
+      </div>
+      <div class="col-sm">
+      Average rating: <%= @new_show.avg_rating %>
+      </div>
 
-        <%= @show.name%> <br>
-        <p>Overview: <%= @show.overview %> </p>
-        <p><img src= <%= @new_show.image %> > </p>
-        <p>Number of episodes <%= @show.number_of_episodes %> </p>
-        <p>Number of seasons <%= @show.number_of_seasons %> </p>
-        <p>Seasons:</p>
+      <h1>Seasons</h1>
+      <div class="container">
+      <div class="row">
+        <div class="col-sm">
+         Season Cover:
+        </div>
+      <div class="col-sm">
+       Name: 
+      </div>
+      <div class="col-sm">
+      Overview: 
+      </div>
+      <div class="col-sm">
+      Vote Average:
+      </div>
+  </div>
+</div>
+      
         <% @seasons.each do |season| %>
             
-            <p><a href="/seasons/<%= season.id %>"> <%= season.season_name %> </a></p>
-            <p> <%= season.number_of_episodes%></p>
-            <p> <%= season.poster_path %></p>
-            <p> <%= season.vote_average %></p>
+            <div class="container">
+            <div class="row">
+        <div class="col-sm">
+        <a href="/seasons/<%= season.id %>"><img src= <%= season.poster_path %> class="img-fluid" alt="Responsive image"> </a>
+        </div>
+      <div class="col-sm">
+      <a href="/seasons/<%= season.id %>"> <%= season.season_name %> </a>
+      </div>
+      <div class="col-sm">
+      <%= season.overview %>
+      </div>
+      <div class="col-sm">
+      <%= season.vote_average %>
+      </div>
         <% end %>
 
 

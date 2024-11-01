@@ -1,15 +1,54 @@
-<h1>Seasons#show</h1>
-<%= @season.season_name%> <br>
-<p>Overview: <%= @season.overview %> </p>
-<p><img src= <%= @season.poster_path %> > </p>
-<p>Number of episodes <%= @season.number_of_episodes %> </p>
-<p>Vote Average <%= @season.vote_average %> </p>
-<p>Episodes:</p>
+<div class="container">
+<div class="row">
+  <div class="col-sm">
+  <a href="/seasons/<%= @season.id %>"><img src= <%= @season.poster_path %> class="img-fluid" alt="Responsive image"> </a>
+  </div>
+<div class="col-sm">
+<a href="/seasons/<%= @season.id %>"> <%= @season.season_name %> </a>
+</div>
+<div class="col-sm">
+<%= @season.overview %>
+</div>
+<div class="col-sm">
+<%= @season.vote_average %>
+</div>
+
+
+<h1>Episodes:</h1>
+<div class="container">
+      <div class="row">
+        <div class="col-sm">
+         Episode still:
+        </div>
+      <div class="col-sm">
+       Name: 
+      </div>
+      <div class="col-sm">
+      Overview: 
+      </div>
+      <div class="col-sm">
+      Vote Average:
+      </div>
+  </div>
+</div>
+
 <% @episodes.each do |episode| %>
-    <p> <%= episode.episode_name %></p>
-    <p> <%= episode.episode_number%></p>
-    <p> <img src= <%= episode.still_path %> ></p>
-    <p> <%= episode.overview %></p>
-    <p> <%= episode.vote_average %></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+        <img src= <%= episode.still_path %> class="img-fluid" alt="Responsive image"> </a>
+        </div>
+      <div class="col-sm">
+       <%= episode.episode_number%> 
+      </div>
+      <div class="col-sm">
+      <%= episode.overview %>
+      </div>
+      <div class="col-sm">
+      <%= episode.vote_average %>
+      </div>
+  </div>
+</div>
 <% end %>
+
 

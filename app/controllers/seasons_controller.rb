@@ -1,9 +1,7 @@
 class SeasonsController < ApplicationController
   def index
-    page = params[:page].to_i || 1
-    @per_page = 10  # Number of records per page
-    offset = (page - 1) * @per_page
-    @seasons = Season.limit(@per_page).offset(offset)
+
+    @seasons = Season.paginate(page: params[:page], per_page: 10)
   end
 
   def show

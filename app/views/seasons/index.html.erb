@@ -1,24 +1,37 @@
-<ul>
+<div class="container">
+      <div class="row">
+        <div class="col-sm">
+         Season Cover:
+        </div>
+      <div class="col-sm">
+       Name: 
+      </div>
+      <div class="col-sm">
+      Overview: 
+      </div>
+      <div class="col-sm">
+      Vote Average:
+      </div>
+  </div>
+</div>
+
   <% @seasons.each do |season| %>
     <div class="container">
       <div class="row">
         <div class="col-sm">
-         <a href="/seasons/<%= season.id %>"> <%= season.season_name %> </a>
+        <a href="/seasons/<%= season.id %>"><img src= <%= season.poster_path %> class="img-fluid" alt="Responsive image"> </a>
         </div>
       <div class="col-sm">
-      <img src= <%= season.poster_path %> >
+      <a href="/seasons/<%= season.id %>"> <%= season.season_name %> </a>
       </div>
       <div class="col-sm">
-      Overview: <%= season.overview %>
+      <%= season.overview %>
+      </div>
+      <div class="col-sm">
+      <%= season.vote_average %>
       </div>
   </div>
 </div>
   <% end %>
-  <% if params[:page].to_i > 1 %>
-    <%= link_to "Previous", root_path(page: params[:page].to_i - 1) %>
-  <% end %>
-  
-  <% if @seasons.size == @per_page %>
-    <%= link_to "Next", root_path(page: params[:page].to_i + 1) %>
-  <% end %>
-</ul>
+  <%= will_paginate @seasons %>
+<
