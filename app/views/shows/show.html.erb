@@ -1,6 +1,19 @@
-<ul>
-    <li>
+
         <%= @show.name%> <br>
-      <p>Overview: <%= @show.overview %> </p>
-    </li>
-</ul>
+        <p>Overview: <%= @show.overview %> </p>
+        <p><img src= <%= @new_show.image %> > </p>
+        <p>Number of episodes <%= @show.number_of_episodes %> </p>
+        <p>Number of seasons <%= @show.number_of_seasons %> </p>
+        <p>Seasons:</p>
+        <% @seasons.each do |season| %>
+            
+            <p><a href="/seasons/<%= season.id %>"> <%= season.season_name %> </a></p>
+            <p> <%= season.number_of_episodes%></p>
+            <p> <%= season.poster_path %></p>
+            <p> <%= season.vote_average %></p>
+        <% end %>
+
+
+
+
+

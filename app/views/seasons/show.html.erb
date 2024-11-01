@@ -1,0 +1,15 @@
+<h1>Seasons#show</h1>
+<%= @season.season_name%> <br>
+<p>Overview: <%= @season.overview %> </p>
+<p><img src= <%= @season.poster_path %> > </p>
+<p>Number of episodes <%= @season.number_of_episodes %> </p>
+<p>Vote Average <%= @season.vote_average %> </p>
+<p>Episodes:</p>
+<% @episodes.each do |episode| %>
+    <p> <%= episode.episode_name %></p>
+    <p> <%= episode.episode_number%></p>
+    <p> <img src= <%= episode.still_path %> ></p>
+    <p> <%= episode.overview %></p>
+    <p> <%= episode.vote_average %></p>
+<% end %>
+

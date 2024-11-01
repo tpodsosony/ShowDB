@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  episode_name: MyString
+  overview: MyText
+  episode_number: 1
+  vote_average: 9.99
+  still_path: MyString
+  season: one
+
+two:
+  episode_name: MyString
+  overview: MyText
+  episode_number: 1
+  vote_average: 9.99
+  still_path: MyString
+  season: two

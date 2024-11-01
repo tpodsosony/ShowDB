@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_30_194515) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_202349) do
+  create_table "episodes", force: :cascade do |t|
+    t.string "episode_name"
+    t.text "overview"
+    t.integer "episode_number"
+    t.decimal "vote_average"
+    t.string "still_path"
+    t.integer "season_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_episodes_on_season_id"
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.string "season_name"
     t.integer "number_of_episodes"
@@ -44,6 +56,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_194515) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "episodes", "seasons"
   add_foreign_key "seasons", "show_details"
   add_foreign_key "show_details", "shows"
 end

@@ -16,7 +16,7 @@ x = 1
 shows = [] 
 show_info = []
 
-while x < 30
+while x < 20
   url = URI("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=#{x}")
 
   http = Net::HTTP.new(url.host, url.port)
@@ -31,6 +31,7 @@ while x < 30
   shows.concat(page_data["results"]) 
 
   x += 1
+  sleep(1)
 end
 
 # Print the original_name of each show
@@ -77,7 +78,7 @@ new_show_detail = new_show.create_show_detail!(
   show_info['seasons'].each do |season|
     season_name = season['name']
     number_of_episodes = season['episode_count']
-    poster_path = season['poster_path']
+    poster_path = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2#{season['poster_path']}"
     vote_average = season['vote_average']
     overview = season['overview']
   
@@ -88,6 +89,31 @@ new_show_detail = new_show.create_show_detail!(
       vote_average: vote_average,
       overview: overview
     )
+
+      url = URI("https://api.themoviedb.org/3/tv/#{show['id']}/season/#{season['season_number']}?language=en-US")
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(url)
+      request["accept"] = 'application/json'
+      request["Authorization"] = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZGY2MDQ2MmRmZGM1NDMxMGVhOTFiNzg2N2QyNDkyMCIsIm5iZiI6MTczMDI1NTYwMy4zMDc1ODU3LCJzdWIiOiI2NzExODIzMjFmMGVhNDcxNGVkYmM5NjYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.NXWbbp3pdG5MLGZqvWZbJ06pGxlpfBdZP8EkQCC7WiY'
+      response = http.request(request)
+      
+      episode_json = JSON.parse(response.read_body) 
+      episode_json['episodes'].each do |episode|
+        episode_name = episode['name']
+        overview = episode['overview']
+        episode_number = episode['episode_number']
+        vote_average = episode['vote_average']
+        still_path = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2#{episode['still_path']}"
+        
+        new_episode = new_season.episodes.create!(
+          episode_name: episode_name,
+          overview: overview,
+          episode_number: episode_number,
+          vote_average: vote_average,
+          still_path: still_path
+        )
+    end
     
     end
 

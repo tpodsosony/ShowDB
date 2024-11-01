@@ -1,23 +1,17 @@
-<h1>Top shows</h1>
-
-
-
 <ul>
-  <% @shows.each do |show| %>
+  <% @seasons.each do |season| %>
     <li>
-      <a href="/shows/<%= show.id %>"> <%= show.title %> </a>
+      <a href="/season/<%= season.id %>"> <%= season.season_name %> </a>
       </br>
-      <img src= <%= show.image %> >
-      <p>Overview: <%= show.overview %> </p>
+      <img src= <%= season.poster_path %> >
+      <p>Overview: <%= season.overview %> </p>
     </li>
   <% end %>
   <% if params[:page].to_i > 1 %>
     <%= link_to "Previous", root_path(page: params[:page].to_i - 1) %>
   <% end %>
   
-  <% if @shows.size == @per_page %>
+  <% if @seasons.size == @per_page %>
     <%= link_to "Next", root_path(page: params[:page].to_i + 1) %>
   <% end %>
 </ul>
-
-
