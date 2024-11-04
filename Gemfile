@@ -65,4 +65,4 @@ gem "cssbundling-rails", "~> 1.4"
 gem "bootstrap"
 gem "sassc-rails"
 
-gem "will_paginate", "~> 3.3"
+gem "will_paginate", "~> 4.0"
